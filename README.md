@@ -1,7 +1,23 @@
+# Introduction
+
+This repo contains a complete example for running a Spark map-reduce wordcount job on the CARC HPC machine Wheeler without the need to have a full Hadoop cluster running on dedicated hardware. These scripts can be used without too much trouble to run any Spark job on the cluster, and not just the Python-based map-reduce this demo uses. 
+
+# Installation
+
+You will first want to clone this repo to your account on the wheeler machine. Once you have logged into wheeler, you can cd to the directory where you want to place this repo, for example your home directory, then clone the repo from github (the current link is inside the green "Clone or fownload" button in the upper right of this page on github). Here is such a session:
+'''
+bash$ cd ~
+bash$ git clone https://github.com/rjohns03/spark-on-wheeler.git
+bash$ cd spark-on-wheeler
+bash$ ls
+README.md               conf                    small.txt               wordcount.pbs
+big.txt                 pbs-spark-submit        wordcount.log.reference wordcount.py
+'''
+
+
+
 The Apache Spark big data processing system is now available for use on the CARC Wheeler system
-through normal queueing mechanisms. Users who wish to use Spark will start their own Spark 
-cluster in their allocation on Wheeler, and then can use this cluster either interactively
-or to run a batch Spark program. 
+through normal queueing mechanisms without requiring there to be a full hadoop cluster running on decated hardware.  Users who wish to use Spark will submit their job to the queue with `qsub` and when the job starts up on the compute node(s) a Spark cluster is spawned in their allocation on Wheeler, and this cluster is then used for a batch Spark program with or without interaction. 
 
 Spark-on-Wheeler is driven by the "pbs-spark-submit" script attached below. This script is run
 within a PBS allocation, either batch scheduled (using qsub and a PBS script file)
