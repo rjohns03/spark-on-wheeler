@@ -48,6 +48,12 @@ big.txt          pbs-spark-submit wordcount.log.reference	 wordcount.py
 
 One of the benifits of cloning a repository is the ease with which you can reset everything inside the repo to how it was when you first cloned it very easily. Let say you have made some changes, and there are some new .o and .e files, but you now want to reset it to its original state. You could delete it and clone it again, or far better, just reset it. 
 
+By running the following two commands, any changes you have made will be discarded, and it will be updated to the most recent state of the github repo:
+
+```
+git reset --hard origin/master
+git pull origin master
+```
 
 
 
