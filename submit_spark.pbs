@@ -1,0 +1,55 @@
+# PBS Script for running Spark job on Wheeler
+# 2017, Center for Advanced Research Computing, UNM
+
+
+# The following lines set your number of nodes and cores per node, walltime and
+# the job name, respectively. 
+
+#PBS -l nodes=2:ppn=8
+#PBS -l walltime=01:00:00
+#PBS -N SparkJob
+
+# Here you must set the name of the document you want to count words in, and 
+# the name of the output file. The document must be in this directory, or have
+# an absolute path here. 
+
+DOCUMENT="big.txt"
+OUTPUT="results.log"
+
+# Location of scratch. This should be on a highspeed paralellel filesystem 
+# such as wheeler-scratch.  DO not use home directories! 
+SCRATCHDIR=/wheeler/scratch/$USER/.spark_scratch
+
+# You should not need to edit below this line #
+############################################################################
+
+module load spark-2.1.0-gcc-4.8.5-lifnga6
+export SPARK_HOME=$SPARK_DIR
+
+
+# Create the scratch directory
+mkdir -p $SCRATCHDIR || echo "Could not create scratch directory!" ; exit 
+
+
+# Setting up 
+cd $PBS_O_WORKDIR
+cp wordcount.py $SCRATCHDIR
+cp $DOCUMENT $SCRATCHDIR
+cp -r conf $SCRATCHDIR
+
+cd $SCRATCHDIR 
+echo Starting workcount at $(date)
+$PBS_O_WORKDIR/pbs-spark-submit wordcount.py $SCRATCHDIR/big.txt > $OUTPUT 
+echo Word count finished at $(date)
+
+echo Cleaning up...
+
+cp $OUTPUT $PBS_O_WORKDIR
+rm -r $SCRATCHDIR
+
+echo Job is finished at $(date)
+
+
+
+
+
