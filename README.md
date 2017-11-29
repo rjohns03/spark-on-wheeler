@@ -36,13 +36,15 @@ github (the current link is inside the green "Clone or Download" button in the
 upper right of this page github). 
 Here is such a session: 
 
-''' bash$ cd ~
+``` 
+bash$ cd ~
 bash$ git clone https://github.com/rjohns03/spark-on-wheeler.git 
 bash$ cd spark-on-wheeler 
 bash$ ls 
-README.md               conf small.txt
-wordcount.pbs big.txt                 pbs-spark-submit wordcount.log.reference
-wordcount.py '''
+README.md        conf 		  small.txt		submit_spark.pbs 	
+big.txt          pbs-spark-submit wordcount.log.reference	 wordcount.py 
+```
+
 
 One of the benifits of cloning a repository is the ease with which you can reset everything inside the repo to how it was when you first cloned it very easily. Let say you have made some changes, and there are some new .o and .e files, but you now want to reset it to its original state. You could delete it and clone it again, or far better, just reset it. 
 
