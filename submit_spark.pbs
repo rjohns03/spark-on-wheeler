@@ -28,8 +28,7 @@ export SPARK_HOME=$SPARK_DIR
 
 
 # Create the scratch directory
-mkdir -p $SCRATCHDIR || echo "Could not create scratch directory!" ; exit 
-
+mkdir -p $SCRATCHDIR  
 
 # Setting up 
 cd $PBS_O_WORKDIR
@@ -44,7 +43,10 @@ echo Word count finished at $(date)
 
 echo Cleaning up...
 
-cp $OUTPUT $PBS_O_WORKDIR
+cp -vr $SCRATCHDIR/* $PBS_O_WORKDIR/
+
+
+
 rm -r $SCRATCHDIR
 
 echo Job is finished at $(date)
